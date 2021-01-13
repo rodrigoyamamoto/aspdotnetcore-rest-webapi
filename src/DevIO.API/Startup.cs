@@ -1,19 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using DevIO.API.Configuration;
 using DevIO.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace DevIO.API
 {
@@ -28,16 +21,17 @@ namespace DevIO.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<MeuDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper(typeof(Startup));
-            services.AddMvc();
+            services.AddControllers();
             services.ResolveDependencies();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -48,8 +42,13 @@ namespace DevIO.API
                 app.UseHsts();
             }
 
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }
