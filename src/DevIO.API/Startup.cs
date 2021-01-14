@@ -27,7 +27,10 @@ namespace DevIO.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options => options
+                    .SerializerSettings
+                    .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.ResolveDependencies();
         }
 
@@ -42,13 +45,13 @@ namespace DevIO.API
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseHttpsRedirection();
         }
     }
 }
