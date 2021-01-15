@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using DevIO.API.Configuration;
 using DevIO.Data.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
@@ -26,11 +27,19 @@ namespace DevIO.API
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
             services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers()
                 .AddNewtonsoftJson(options => options
                     .SerializerSettings
                     .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.ResolveDependencies();
         }
 
