@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DevIO.Api.Extensions
+namespace DevIO.API.Extensions
 {
     public class CustomAuthorization
     {

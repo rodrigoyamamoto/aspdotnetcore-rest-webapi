@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using DevIO.API.Data;
-using DevIO.Api.Extensions;
 using DevIO.API.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

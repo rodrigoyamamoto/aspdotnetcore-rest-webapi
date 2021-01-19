@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DevIO.Api.ViewModels
+namespace DevIO.API.ViewModels
 {
     public class EnderecoViewModel
     {

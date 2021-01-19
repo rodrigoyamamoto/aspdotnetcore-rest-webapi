@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
-using DevIO.Api.Configuration;
 using DevIO.API.Configuration;
 using DevIO.Data.Context;
 using Microsoft.EntityFrameworkCore;
