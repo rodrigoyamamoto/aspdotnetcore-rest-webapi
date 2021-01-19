@@ -26,7 +26,8 @@ namespace DevIO.API.Controllers
         public AuthController(INotificador notificador,
                               SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings) : base(notificador)
+                              IOptions<AppSettings> appSettings,
+                              IUser user) : base(notificador, user)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -52,7 +53,9 @@ namespace DevIO.API.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return CustomResponse(await GerarJwt(user.Email));
+                return CustomResponse(await
+
+                    GerarJwt(user.Email));
             }
             foreach (var error in result.Errors)
             {
