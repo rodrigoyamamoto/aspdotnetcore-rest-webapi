@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using DevIO.Api.Configuration;
 using DevIO.API.Configuration;
 using DevIO.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace DevIO.API
 {
@@ -29,14 +31,18 @@ namespace DevIO.API
             services.AddIdentityConfiguration(Configuration);
 
             services.AddAutoMapper(typeof(Startup));
+
             services.AddApiConfig();
+            services.AddApiVersioning();
+            services.AddSwaggerConfig();
 
             services.ResolveDependencies();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             app.UseApiConfig(env);
+            app.UseSwaggerConfig(provider);
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DevIO.API.V1.Controllers
 {
 
-    [ApiVersion("1.0")]
+    [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ProdutosController : MainController
     {
