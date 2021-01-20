@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DevIO.Api.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -81,6 +82,8 @@ namespace DevIO.API.Configuration
             {
                 endpoints.MapControllers();
             });
+
+            app.UseLoggingConfiguration();
 
             return app;
         }

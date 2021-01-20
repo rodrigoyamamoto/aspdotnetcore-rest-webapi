@@ -36,6 +36,9 @@ namespace DevIO.API
             services.AddApiVersioning();
             services.AddSwaggerConfig();
 
+            // deactivated because it's a payed service!
+            //services.AddLoggingConfig(Configuration);
+
             services.ResolveDependencies();
         }
 
