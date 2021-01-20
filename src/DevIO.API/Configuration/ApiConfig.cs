@@ -1,5 +1,4 @@
-﻿using DevIO.Api.Configuration;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +52,9 @@ namespace DevIO.API.Configuration
                             .AllowAnyHeader());
             });
 
+            //services.AddHealthChecks();
+            //services.AddHealthChecksUI();
+
             return services;
         }
 
@@ -69,6 +71,7 @@ namespace DevIO.API.Configuration
                 app.UseHsts();
             }
 
+            // app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -78,12 +81,14 @@ namespace DevIO.API.Configuration
 
             app.UseStaticFiles();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseLoggingConfiguration();
+            // app.UseLoggingConfiguration();
+            //app.UseHealthChecks("/hc");
 
             return app;
         }
