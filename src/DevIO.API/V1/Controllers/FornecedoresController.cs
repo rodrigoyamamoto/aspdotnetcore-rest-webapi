@@ -52,7 +52,7 @@ namespace DevIO.API.V1.Controllers
             return fornecedor;
         }
 
-        [HttpGet("obter-endereco/{id:guid}")]
+        [HttpGet("endereco/{id:guid}")]
         public async Task<EnderecoViewModel> ObterEnderecoPorId(Guid id) =>
             _mapper.Map<EnderecoViewModel>(await _enderecoRepository.ObterPorId(id));
 
